@@ -7,7 +7,7 @@ DB = REPO_ROOT / "warehouse" / "analytics.duckdb"
 def main():
     con = duckdb.connect(str(DB))
 
-    # Clean / typed events
+    # Fact events
     con.execute("""
     CREATE OR REPLACE TABLE fct_events AS
     SELECT
@@ -20,6 +20,7 @@ def main():
     FROM raw_events
     """)
 
+    # Dim user
     con.execute("""
     CREATE OR REPLACE TABLE dim_user AS
     SELECT
@@ -30,6 +31,7 @@ def main():
     FROM raw_users
     """)
 
+    # Orders
     con.execute("""
     CREATE OR REPLACE TABLE fct_orders AS
     SELECT
@@ -40,7 +42,7 @@ def main():
     FROM raw_orders
     """)
 
-    # Sessions: one row per session with whether it converted
+    # Sessions (one row per session)
     con.execute("""
     CREATE OR REPLACE TABLE fct_sessions AS
     SELECT
@@ -69,7 +71,20 @@ def main():
     ORDER BY 1
     """)
 
-    # A/B results: conversion by variant (session-level)
+    # KPI daily (sessions + conversions + conversion rate)
+    con.execute("""
+    CREATE OR REPLACE TABLE kpi_daily AS
+    SELECT
+      CAST(session_start_ts AS DATE) AS event_date,
+      COUNT(DISTINCT session_id) AS sessions,
+      SUM(converted) AS conversions,
+      (SUM(converted) * 1.0) / NULLIF(COUNT(DISTINCT session_id), 0) AS conversion_rate
+    FROM fct_sessions
+    GROUP BY 1
+    ORDER BY 1
+    """)
+
+    # A/B results (session-level conversion by variant)
     con.execute("""
     CREATE OR REPLACE TABLE ab_results AS
     SELECT
