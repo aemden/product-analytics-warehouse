@@ -30,23 +30,22 @@ End-to-end product analytics project that generates realistic event data, loads 
 
 product-analytics-warehouse/
 ├─ app/
-│ └─ dashboard.py
+│  └─ dashboard.py
 ├─ src/
-│ ├─ generate/
-│ │ └─ make_data.py
-│ ├─ ingest/
-│ │ └─ load_raw.py
-│ ├─ marts/
-│ │ └─ build_marts.py
-│ └─ analysis/
-│ └─ ab_test_stats.py # optional (if created)
+│  ├─ generate/
+│  │  └─ make_data.py
+│  ├─ ingest/
+│  │  └─ load_raw.py
+│  ├─ marts/
+│  │  └─ build_marts.py
+│  └─ analysis/
+│     └─ ab_test_stats.py
 ├─ data/
-│ └─ raw/ # gitignored (generated locally)
+│  └─ raw/                 # gitignored (generated locally)
 ├─ warehouse/
-│ └─ analytics.duckdb # gitignored (created locally)
-├─ assets/ # screenshots for README
-├─ requirements.txt
-└─ .gitignore
+│  └─ analytics.duckdb     # gitignored (created locally)
+└─ requirements.txt
+
 
 
 
