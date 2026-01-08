@@ -59,11 +59,6 @@ product-analytics-warehouse/
 ![Dashboard Overview](assets/dashboard_overview.png)
 ![A/B Results](assets/ab_results.png)
 
-(Optional)
-![A/B Stats Output](assets/ab_test_stats_terminal.png)
-
----
-
 ## Setup (Windows PowerShell)
 
 ```powershell
