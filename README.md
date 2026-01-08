@@ -28,6 +28,7 @@ End-to-end product analytics project that generates realistic event data, loads 
 
 ## Project Structure
 
+```text
 product-analytics-warehouse/
 ├─ app/
 │  └─ dashboard.py
@@ -44,7 +45,10 @@ product-analytics-warehouse/
 │  └─ raw/                 # gitignored (generated locally)
 ├─ warehouse/
 │  └─ analytics.duckdb     # gitignored (created locally)
+├─ assets/
 └─ requirements.txt
+```
+
 
 
 
