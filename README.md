@@ -54,8 +54,6 @@ product-analytics-warehouse/
 
 ## Screenshots
 
-> Add your screenshots to `assets/` and they’ll render here.
-
 ![Dashboard Overview](assets/dashboard_overview.png)
 ![A/B Results](assets/ab_results.png)
 
